@@ -81,6 +81,32 @@ nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
 .nav-links a:hover,
 .nav-links a.active { color: var(--black); }
 
+.nav-divider {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0 0.25rem;
+}
+
+.nav-divider-line {
+  width: 1px;
+  height: 20px;
+  background: rgba(0,0,0,0.15);
+}
+
+.nav-group-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-200);
+  padding: 0.2rem 0.5rem;
+  white-space: nowrap;
+}
+
+.nav-group-label.internal { color: var(--orange); }
+.nav-group-label.external { color: var(--gray-400); }
+
 /* ── Hero ── */
 .hero {
   min-height: 100vh;
@@ -257,6 +283,100 @@ hr.divider {
 
 .btn-pill:hover { background: var(--gray-800); }
 
+/* ── Table of Contents ── */
+.toc {
+  background: var(--white);
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  border-top: 2px solid var(--black);
+  padding-top: 3rem;
+}
+
+.toc-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.toc-section-number {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.2rem;
+  color: var(--yellow);
+  line-height: 1;
+}
+
+.toc-section-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.toc-section-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  margin-left: 0.75rem;
+  vertical-align: middle;
+}
+
+.toc-section-badge.internal {
+  background: rgba(237,216,94,0.15);
+  color: #B8A020;
+  border: 1px solid rgba(237,216,94,0.3);
+}
+
+.toc-section-badge.external {
+  background: rgba(0,0,0,0.04);
+  color: var(--gray-400);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.toc-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.toc-item:last-child { border-bottom: none; }
+
+.toc-item-number {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--gray-200);
+  min-width: 1.5rem;
+}
+
+.toc-item a {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.toc-item a:hover {
+  color: var(--black);
+}
+
 /* ── Section Divider ── */
 .section-divider {
   background: var(--black);
@@ -308,6 +428,29 @@ hr.divider {
   font-weight: 400;
   color: var(--white);
   line-height: 1.1;
+}
+
+.section-divider-audience {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 100px;
+}
+
+.section-divider-audience.internal {
+  background: rgba(237,216,94,0.15);
+  color: var(--yellow);
+  border: 1px solid rgba(237,216,94,0.3);
+}
+
+.section-divider-audience.external {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
 /* ── AI Disclosure ── */
@@ -626,37 +769,25 @@ hr.divider {
 }
 
 .driver-card {
-  padding: 2.5rem 2rem;
+  padding: 2.5rem 2rem 2.5rem 2.5rem;
   border-right: 1px solid rgba(0,0,0,0.1);
+  position: relative;
 }
+
+.driver-card::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  bottom: 2rem;
+  width: 3px;
+}
+
+.driver-card.burnout::before { background: var(--yellow); }
+.driver-card.management::before { background: var(--orange-light); }
+.driver-card.education::before { background: var(--black); }
 
 .driver-card:last-child { border-right: none; }
-
-.driver-tag {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.8rem;
-  border-radius: 100px;
-  margin-bottom: 1.25rem;
-}
-
-.driver-card.burnout .driver-tag {
-  background: #FDECEA;
-  color: var(--red-muted);
-}
-
-.driver-card.management .driver-tag {
-  background: #FFF0E0;
-  color: var(--orange);
-}
-
-.driver-card.education .driver-tag {
-  background: #E0EFE0;
-  color: #2D6A2E;
-}
 
 .driver-card h3 {
   font-family: 'Instrument Serif', Georgia, serif;
@@ -1047,6 +1178,7 @@ footer .footer-right {
   .disclosure-grid {
     grid-template-columns: 1fr;
   }
+  .toc-grid { grid-template-columns: 1fr; }
   .summary-pillars { grid-template-columns: 1fr; }
   .summary-pillar { border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.08); }
   .stat-card,
@@ -1069,8 +1201,11 @@ footer .footer-right {
 <nav id="nav">
   <div class="nav-logo"><img src="guild logo.webp" alt="Guild"></div>
   <ul class="nav-links">
+    <li><span class="nav-group-label internal">Internal</span></li>
     <li><a href="#positioning">Positioning</a></li>
     <li><a href="#architecture">Architecture</a></li>
+    <li class="nav-divider"><span class="nav-divider-line"></span></li>
+    <li><span class="nav-group-label external">External</span></li>
     <li><a href="#problem">Problem</a></li>
     <li><a href="#drivers">Drivers</a></li>
     <li><a href="#traditional">Status Quo</a></li>
@@ -1085,7 +1220,7 @@ footer .footer-right {
     <div class="hero-text fade-up">
       <div class="hero-badge">Guild Grow &middot; Take-Home Assignment</div>
       <h1>Empowering the next generation of healthcare leaders</h1>
-      <p>A positioning and messaging framework for Guild Grow in the healthcare vertical</p>
+      <p>A positioning/messaging framework and pitch for Guild Grow in the healthcare vertical</p>
       <div class="hero-author">
         By <strong>Ayman Kotob</strong>
         <img src="Ayman Kotob Photo V3.png" alt="Ayman Kotob" class="hero-headshot">
@@ -1093,6 +1228,68 @@ footer .footer-right {
     </div>
     <div class="hero-image fade-up d2">
       <img src="guild person image 1.webp" alt="Healthcare professional">
+    </div>
+  </div>
+</section>
+
+<!-- Table of Contents -->
+<section class="toc" id="toc">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Overview</div>
+      <h2 class="section-title">Table of Contents</h2>
+    </div>
+    <div class="toc-grid fade-up d1">
+      <div>
+        <div class="toc-section-header">
+          <span class="toc-section-number">01</span>
+          <span class="toc-section-title">Positioning &amp; Messaging</span>
+          <span class="toc-section-badge internal">Internal</span>
+        </div>
+        <ul class="toc-items">
+          <li class="toc-item">
+            <span class="toc-item-number">1</span>
+            <a href="#disclosure">AI Disclosure</a>
+          </li>
+          <li class="toc-item">
+            <span class="toc-item-number">2</span>
+            <a href="#positioning">Positioning Statement</a>
+          </li>
+          <li class="toc-item">
+            <span class="toc-item-number">3</span>
+            <a href="#architecture">Messaging Architecture</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="toc-section-header">
+          <span class="toc-section-number">02</span>
+          <span class="toc-section-title">The Pitch</span>
+          <span class="toc-section-badge external">External</span>
+        </div>
+        <ul class="toc-items">
+          <li class="toc-item">
+            <span class="toc-item-number">4</span>
+            <a href="#problem">Labor &amp; Skill Shortages Are Coming</a>
+          </li>
+          <li class="toc-item">
+            <span class="toc-item-number">5</span>
+            <a href="#drivers">What Is Driving These Shortages?</a>
+          </li>
+          <li class="toc-item">
+            <span class="toc-item-number">6</span>
+            <a href="#traditional">Traditional Programs Don&rsquo;t Cut It</a>
+          </li>
+          <li class="toc-item">
+            <span class="toc-item-number">7</span>
+            <a href="#vision">What If There Was Another Way?</a>
+          </li>
+          <li class="toc-item">
+            <span class="toc-item-number">8</span>
+            <a href="#solution">Get There with Guild Grow</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -1115,6 +1312,7 @@ footer .footer-right {
           <li>Brainstormed core elements of positioning/messaging architecture</li>
           <li>Generated the narrative flow of this document</li>
           <li>Wrote first drafts of all content</li>
+          <li>Reviewed AI outputs</li>
         </ul>
       </div>
       <div class="disclosure-col ai-col fade-up d2">
@@ -1136,6 +1334,7 @@ footer .footer-right {
     <div class="section-divider-text">
       <div class="section-divider-label">Section 1</div>
       <div class="section-divider-title">Positioning &amp; Messaging</div>
+      <span class="section-divider-audience internal">Internal Use</span>
     </div>
   </div>
 </div>
@@ -1276,6 +1475,7 @@ footer .footer-right {
     <div class="section-divider-text">
       <div class="section-divider-label">Section 2</div>
       <div class="section-divider-title">The Healthcare Talent Crisis</div>
+      <span class="section-divider-audience external">External &mdash; Customer-Facing Pitch</span>
     </div>
   </div>
 </div>
@@ -1332,7 +1532,6 @@ footer .footer-right {
     </div>
     <div class="drivers-grid fade-up d1">
       <div class="driver-card burnout">
-        <span class="driver-tag">High Impact</span>
         <h3>Burnout</h3>
         <ul>
           <li>Excessive workload and staffing shortages</li>
@@ -1341,7 +1540,6 @@ footer .footer-right {
         <div class="driver-sources">Sources: Adonis, CDC</div>
       </div>
       <div class="driver-card management">
-        <span class="driver-tag">Systemic</span>
         <h3>Management Pressure</h3>
         <ul>
           <li>Micromanagement</li>
@@ -1350,7 +1548,6 @@ footer .footer-right {
         <div class="driver-sources">Source: The Lancet</div>
       </div>
       <div class="driver-card education">
-        <span class="driver-tag">Structural</span>
         <h3>Limited Educational Capacity</h3>
         <ul>
           <li>Not enough training programs to meet demand</li>
