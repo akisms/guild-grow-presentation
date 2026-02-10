@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guild Grow — Empowering the Next Generation of Healthcare Leaders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF3E8;
+  --cream-dark: #F0E8D8;
+  --yellow: #EDD85E;
+  --yellow-light: #F5E98A;
+  --black: #1A1A1A;
+  --white: #FFFFFF;
+  --gray-800: #2D2D2D;
+  --gray-600: #555555;
+  --gray-400: #888888;
+  --gray-200: #CCCCCC;
+  --gray-100: #EEEEEE;
+  --orange: #D4612C;
+  --orange-light: #E8A070;
+  --red-muted: #B8453A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 18px; }
+
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  color: var(--black);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 60px;
+  padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s;
+}
+
+nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo img {
+  height: 24px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--gray-600);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active { color: var(--black); }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 3rem 4rem;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text {
+  max-width: 560px;
+}
+
+.hero-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 55%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  background: linear-gradient(to right, var(--cream) 0%, transparent 100%);
+  z-index: 1;
+}
+
+.hero-image::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20%;
+  background: linear-gradient(to top, var(--cream) 0%, transparent 100%);
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.08;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.hero-author {
+  font-size: 1rem;
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.hero-author strong {
+  color: var(--black);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-underline-offset: 3px;
+}
+
+.hero-headshot {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(20%);
+  opacity: 0.9;
+}
+
+/* ── Shared section styles ── */
+section {
+  padding: 6rem 3rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 1.25rem;
+}
+
+.section-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.12;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--gray-600);
+  max-width: 640px;
+  line-height: 1.65;
+  margin-bottom: 3rem;
+}
+
+hr.divider {
+  border: none;
+  height: 1px;
+  background: rgba(0,0,0,0.12);
+  margin-bottom: 3rem;
+}
+
+.btn-pill {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: var(--black);
+  color: var(--white);
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-pill:hover { background: var(--gray-800); }
+
+/* ── Section Divider ── */
+.section-divider {
+  background: var(--black);
+  padding: 5rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--yellow);
+}
+
+.section-divider .container {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.section-divider-number {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 5rem;
+  color: var(--yellow);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.section-divider-text {
+  flex: 1;
+}
+
+.section-divider-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 0.6rem;
+}
+
+.section-divider-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+/* ── AI Disclosure ── */
+.disclosure { background: var(--white); }
+
+.disclosure-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding-top: 1rem;
+}
+
+.disclosure-col h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.disclosure-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.disclosure-col li {
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.disclosure-col li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--black);
+}
+
+.disclosure-col.ai-col li::before {
+  background: var(--orange);
+}
+
+/* ── Positioning ── */
+.positioning { background: var(--cream); }
+
+.positioning-box {
+  background: var(--yellow);
+  padding: 3.5rem 4rem;
+  position: relative;
+}
+
+.positioning-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--black);
+}
+
+.positioning-box p {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  line-height: 1.65;
+  color: var(--black);
+  font-weight: 400;
+}
+
+.positioning-box strong {
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-underline-offset: 3px;
+  font-weight: 400;
+}
+
+/* ── Architecture ── */
+.architecture { background: var(--white); }
+
+.arch-rationale {
+  background: var(--cream);
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+  border-left: 3px solid var(--yellow);
+}
+
+.arch-rationale-intro {
+  font-size: 1rem;
+  color: var(--black);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.arch-rationale-intro a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+.arch-rationale ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.arch-rationale li {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.arch-rationale li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--yellow);
+}
+
+.arch-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.arch-table th,
+.arch-table td {
+  padding: 0.85rem 1.1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border: 1px solid rgba(0,0,0,0.08);
+  vertical-align: top;
+}
+
+.arch-table th {
+  background: var(--cream);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-600);
+  white-space: nowrap;
+}
+
+.arch-table th.yellow-bg { background: #FFF3CD; }
+.arch-table th.green-bg  { background: #E0EFE0; }
+.arch-table th.blue-bg   { background: #DDE8EE; }
+
+.arch-table td {
+  color: var(--gray-800);
+}
+
+.arch-table .summary-row th {
+  background: var(--black);
+  color: var(--white);
+}
+
+.arch-table .summary-row td {
+  background: var(--black);
+  color: rgba(255,255,255,0.85);
+}
+
+.arch-table td ul {
+  list-style: none;
+  padding: 0;
+}
+
+.arch-table td li {
+  padding: 0.15rem 0;
+  padding-left: 0.85rem;
+  position: relative;
+  font-size: 0.82rem;
+}
+
+.arch-table td li::before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+  color: var(--gray-400);
+}
+
+/* ── Section with image ── */
+.section-with-image {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+.section-with-image .section-text .section-subtitle {
+  margin-bottom: 0;
+}
+
+.section-image {
+  overflow: hidden;
+}
+
+.section-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Solution pillar rows ── */
+.pillar-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  border-top: 3px solid var(--yellow);
+  margin-bottom: 2.5rem;
+}
+
+.pillar-row.reverse { direction: rtl; }
+.pillar-row.reverse > * { direction: ltr; }
+
+.pillar-row:nth-child(2) { border-top-color: var(--orange); }
+.pillar-row:nth-child(3) { border-top-color: var(--black); }
+
+.pillar-row .pillar-card {
+  border: none;
+  background: var(--white);
+}
+
+.pillar-row .pillar-card::before { display: none; }
+
+.pillar-row-image {
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.pillar-row-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Problem / Stats ── */
+.problem { background: var(--cream); }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--black);
+}
+
+.stat-card {
+  padding: 2.5rem 1.5rem 2rem;
+  border-right: 1px solid rgba(0,0,0,0.1);
+  transition: background 0.2s;
+}
+
+.stat-card:last-child { border-right: none; }
+
+.stat-card:hover { background: rgba(0,0,0,0.02); }
+
+.stat-number {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.stat-desc {
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.stat-source {
+  font-size: 0.7rem;
+  color: var(--gray-200);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Drivers ── */
+.drivers { background: var(--white); }
+
+.drivers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--black);
+}
+
+.driver-card {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.driver-card:last-child { border-right: none; }
+
+.driver-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 100px;
+  margin-bottom: 1.25rem;
+}
+
+.driver-card.burnout .driver-tag {
+  background: #FDECEA;
+  color: var(--red-muted);
+}
+
+.driver-card.management .driver-tag {
+  background: #FFF0E0;
+  color: var(--orange);
+}
+
+.driver-card.education .driver-tag {
+  background: #E0EFE0;
+  color: #2D6A2E;
+}
+
+.driver-card h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+.driver-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.driver-card li {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.driver-card li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--gray-200);
+}
+
+.driver-sources {
+  font-size: 0.72rem;
+  color: var(--gray-200);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── Traditional / Pressures ── */
+.traditional { background: var(--cream); }
+
+.pressure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--black);
+}
+
+.pressure-card {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.pressure-card:last-child { border-right: none; }
+
+.pressure-label {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red-muted);
+  margin-bottom: 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--red-muted);
+}
+
+.pressure-card h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.pressure-card p {
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+
+/* ── Vision ── */
+.vision {
+  background: var(--black);
+  color: var(--white);
+}
+
+.vision .section-label { color: var(--gray-400); }
+.vision .section-title { color: var(--white); }
+.vision .section-subtitle { color: rgba(255,255,255,0.5); }
+
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.vision-card {
+  padding: 2.5rem 1.75rem;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.2s;
+}
+
+.vision-card:last-child { border-right: none; }
+
+.vision-card:hover { background: rgba(255,255,255,0.03); }
+
+.vision-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-top: 1rem;
+  border-top: 3px solid var(--yellow);
+}
+
+.vision-card p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* ── Solution / Pillars ── */
+.solution { background: var(--cream); }
+
+.pillar-card {
+  background: var(--white);
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+
+.pillar-step {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.8rem;
+  color: var(--black);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.pillar-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3rem;
+}
+
+.pillar-card:nth-child(1) .pillar-tag {
+  color: var(--black);
+  border-bottom: 2px solid var(--yellow);
+}
+
+.pillar-card:nth-child(2) .pillar-tag {
+  color: var(--black);
+  border-bottom: 2px solid var(--orange);
+}
+
+.pillar-card:nth-child(3) .pillar-tag {
+  color: var(--black);
+  border-bottom: 2px solid var(--black);
+}
+
+.pillar-card h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.pillar-card p {
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+
+/* ── Summary ── */
+.summary { background: var(--white); }
+
+.summary-box {
+  border-top: 2px solid var(--black);
+  padding-top: 3rem;
+}
+
+.summary-statement {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.6;
+  max-width: 900px;
+  margin-bottom: 3rem;
+}
+
+.summary-statement strong {
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 3px;
+  font-weight: 400;
+}
+
+.summary-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.summary-pillar {
+  padding: 2rem 2rem 2rem 0;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.summary-pillar:last-child { border-right: none; }
+
+.summary-pillar-number {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2rem;
+  color: var(--yellow);
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+
+.summary-pillar h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+
+.summary-pillar p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+}
+
+/* ── Thank You ── */
+.thankyou {
+  background: var(--black);
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.thankyou::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--yellow);
+}
+
+.thankyou-content {
+  max-width: 700px;
+  padding: 2rem;
+}
+
+.thankyou h2 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+
+.thankyou p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+  margin-bottom: 0.5rem;
+}
+
+.thankyou .thankyou-name {
+  font-size: 1.15rem;
+  color: var(--white);
+  font-weight: 600;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.thankyou .thankyou-name img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.thankyou-linkedin {
+  margin-top: 1.5rem;
+}
+
+.thankyou-linkedin a {
+  color: var(--yellow);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(237,216,94,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+
+.thankyou-linkedin a:hover {
+  border-color: var(--yellow);
+}
+
+/* ── Footer ── */
+footer {
+  background: var(--black);
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 3px solid var(--yellow);
+}
+
+footer .footer-left img {
+  height: 22px;
+  width: auto;
+  filter: invert(1);
+}
+
+footer .footer-right {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ── Scroll animations ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.d1 { transition-delay: 0.08s; }
+.fade-up.d2 { transition-delay: 0.16s; }
+.fade-up.d3 { transition-delay: 0.24s; }
+.fade-up.d4 { transition-delay: 0.32s; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid .stat-card:nth-child(2) { border-right: none; }
+  .vision-grid { grid-template-columns: repeat(2, 1fr); }
+  .vision-grid .vision-card:nth-child(2) { border-right: none; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .hero { padding: 5rem 1.5rem 3rem; }
+  .hero-image { width: 100%; height: 50%; top: auto; bottom: 0; }
+  .hero-image::before { width: 100%; height: 50%; bottom: auto; top: 0; background: linear-gradient(to bottom, var(--cream) 0%, transparent 100%); }
+  .section-with-image { grid-template-columns: 1fr; }
+  .pillar-row,
+  .pillar-row.reverse { grid-template-columns: 1fr; direction: ltr; }
+  .pillar-row-image { min-height: 240px; }
+  .stats-grid,
+  .drivers-grid,
+  .pressure-grid,
+  .vision-grid,
+  .disclosure-grid {
+    grid-template-columns: 1fr;
+  }
+  .summary-pillars { grid-template-columns: 1fr; }
+  .summary-pillar { border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .stat-card,
+  .driver-card,
+  .pressure-card,
+  .vision-card {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .vision-card { border-bottom-color: rgba(255,255,255,0.08) !important; }
+  .positioning-box { padding: 2.5rem 2rem; }
+  footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+  .arch-table { font-size: 0.75rem; display: block; overflow-x: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-logo"><img src="guild logo.webp" alt="Guild"></div>
+  <ul class="nav-links">
+    <li><a href="#positioning">Positioning</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#drivers">Drivers</a></li>
+    <li><a href="#traditional">Status Quo</a></li>
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#solution">Solution</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-text fade-up">
+      <div class="hero-badge">Guild Grow &middot; Take-Home Assignment</div>
+      <h1>Empowering the next generation of healthcare leaders</h1>
+      <p>A positioning and messaging framework for Guild Grow in the healthcare vertical</p>
+      <div class="hero-author">
+        By <strong>Ayman Kotob</strong>
+        <img src="Ayman Kotob Photo V3.png" alt="Ayman Kotob" class="hero-headshot">
+      </div>
+    </div>
+    <div class="hero-image fade-up d2">
+      <img src="guild person image 1.webp" alt="Healthcare professional">
+    </div>
+  </div>
+</section>
+
+<!-- AI Disclosure -->
+<section class="disclosure" id="disclosure">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Transparency</div>
+      <h2 class="section-title">AI Disclosure</h2>
+      <p class="section-subtitle">This presentation was created by Ayman Kotob with assistance from AI tools: Claude Code, Claude, ChatGPT, and Perplexity.</p>
+    </div>
+    <hr class="divider">
+    <div class="disclosure-grid">
+      <div class="disclosure-col fade-up d1">
+        <h3>Ayman</h3>
+        <ul>
+          <li>Performed initial exploratory research on healthcare industry challenges</li>
+          <li>Reviewed Guild website to understand Guild offerings</li>
+          <li>Brainstormed core elements of positioning/messaging architecture</li>
+          <li>Generated the narrative flow of this document</li>
+          <li>Wrote first drafts of all content</li>
+        </ul>
+      </div>
+      <div class="disclosure-col ai-col fade-up d2">
+        <h3>AI Tools</h3>
+        <ul>
+          <li>Sourced specific data points quantifying healthcare industry challenges</li>
+          <li>Reviewed drafts to identify opportunities for improvement</li>
+          <li>Built out slides based on content Ayman developed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 1 Divider -->
+<div class="section-divider fade-up">
+  <div class="container">
+    <div class="section-divider-number">01</div>
+    <div class="section-divider-text">
+      <div class="section-divider-label">Section 1</div>
+      <div class="section-divider-title">Positioning &amp; Messaging</div>
+    </div>
+  </div>
+</div>
+
+<!-- Positioning -->
+<section class="positioning" id="positioning">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Positioning</div>
+      <h2 class="section-title">Positioning Statement</h2>
+    </div>
+    <div class="positioning-box fade-up d1">
+      <p><strong>Guild Grow</strong> is an education platform that helps <strong>HR and people leaders</strong> in midsize-to-large healthcare systems <strong>upskill and reskill</strong> their workforce. With labor and skill shortages costing healthcare systems millions and compromising patient care, Guild Grow offers <strong>turnkey educational programs</strong> that attract and retain talent, reduce hiring and turnover costs, and build a <strong>resilient workforce</strong> ready to meet evolving demands.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section class="architecture" id="architecture">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Framework</div>
+      <h2 class="section-title">Messaging Architecture</h2>
+      <div class="arch-rationale">
+        <p class="arch-rationale-intro">This framework comes courtesy of <a href="https://www.fletchpmm.com" target="_blank">FletchPMM</a>. I chose it because:</p>
+        <ul>
+          <li>Leverages different "anchors" to develop a holistic understanding of how the product fits in</li>
+          <li>Uses a "ladder" structure that creates a clear throughline between the problems, capabilities, features, and benefits</li>
+          <li>Has everything on one page for ease of use</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fade-up d1" style="overflow-x:auto;">
+    <table class="arch-table">
+      <tr>
+        <th class="yellow-bg">Company Anchor</th>
+        <td colspan="3">Midsize to large healthcare systems</td>
+      </tr>
+      <tr>
+        <th class="yellow-bg">Persona Anchor</th>
+        <td colspan="3">HR and people leaders</td>
+      </tr>
+      <tr>
+        <th class="green-bg">Use Case Anchor</th>
+        <td colspan="3">Upskill and reskill healthcare workers</td>
+      </tr>
+      <tr>
+        <th class="green-bg">Alternative Anchor</th>
+        <td colspan="3">Traditional reimbursement programs</td>
+      </tr>
+      <tr>
+        <th class="green-bg">Category Anchor</th>
+        <td colspan="3">Workforce education</td>
+      </tr>
+      <tr>
+        <th class="blue-bg">Problem Summary</th>
+        <td colspan="3">Healthcare systems are losing millions of dollars as they struggle with labor and skill shortages, adversely impacting their quality of care and ability to treat patients</td>
+      </tr>
+      <tr>
+        <th>Sub-Problems</th>
+        <td>Healthcare systems struggle to <em>find</em> the right talent</td>
+        <td>Healthcare systems struggle to <em>retain</em> their talent</td>
+        <td>Healthcare systems struggle to prepare their workforce for evolving care demands</td>
+      </tr>
+      <tr>
+        <th>Differentiation Pillars</th>
+        <td>Attract talent with education as a benefit</td>
+        <td>Build employee engagement and retain talent</td>
+        <td>Workforce programs aligned to where healthcare is going</td>
+      </tr>
+      <tr>
+        <th>Capabilities</th>
+        <td>Increase volume and velocity of talent applications through upfront reimbursement of educational programs</td>
+        <td>Create loyal employees (and ready-made talent pool) by providing healthcare workers with tools to uplevel their careers</td>
+        <td>Offer turnkey educational programs to respond to emergent needs in healthcare</td>
+      </tr>
+      <tr>
+        <th>Features</th>
+        <td>
+          <ul>
+            <li>Flexible payment options incl. upfront reimbursement</li>
+            <li>Vast catalog of healthcare programs</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Flexible payment options</li>
+            <li>Wraparound learner experiences incl. 1:1 coaching</li>
+            <li>Talent pipeline observability with skills tracking</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Vast catalog of healthcare programs</li>
+            <li>Launch templates &amp; best practices</li>
+            <li>Personalized portals</li>
+            <li>Career pathways</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>Benefits</th>
+        <td>
+          <ul>
+            <li>Hire faster and become the leading choice</li>
+            <li>[X%] increase in avg applicants</li>
+            <li>[Y%] decrease in days to fill</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>[X%] increase in employee retention</li>
+            <li>[Y%] decrease in turnover/replacement costs</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Well-equipped workforce</li>
+            <li>[X%] increase in productivity</li>
+            <li>[Y%] stated confidence in skills</li>
+          </ul>
+        </td>
+      </tr>
+      <tr class="summary-row">
+        <th>Differentiation Summary</th>
+        <td colspan="3">Guild Grow helps healthcare systems deal with labor and skill shortages by offering turnkey educational programs to attract and retain talent, saving on employee hiring and turnover costs, and create a resilient talent pool in the face of ever-evolving needs and demands confronting healthcare workers</td>
+      </tr>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2 Divider -->
+<div class="section-divider fade-up">
+  <div class="container">
+    <div class="section-divider-number">02</div>
+    <div class="section-divider-text">
+      <div class="section-divider-label">Section 2</div>
+      <div class="section-divider-title">The Healthcare Talent Crisis</div>
+    </div>
+  </div>
+</div>
+
+<!-- Problem -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="section-with-image fade-up">
+      <div class="section-text">
+        <div class="section-label">The Challenge</div>
+        <h2 class="section-title">Labor and skill shortages are coming.</h2>
+        <p class="section-subtitle">The U.S. healthcare system faces a workforce crisis of staggering proportions</p>
+      </div>
+      <div class="section-image">
+        <img src="guild person image 2.webp" alt="Healthcare worker">
+      </div>
+    </div>
+    <div class="stats-grid fade-up d1">
+      <div class="stat-card">
+        <div class="stat-number">3.2M</div>
+        <div class="stat-label">Direct care worker shortfall by 2026</div>
+        <div class="stat-desc">Home health aides, medical assistants, nursing assistants</div>
+        <div class="stat-source">Source: Mercer</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">102M</div>
+        <div class="stat-label">People in Health Professional Shortage Areas</div>
+        <div class="stat-desc">Communities without enough healthcare providers for local populations</div>
+        <div class="stat-source">Source: Medcerts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">500K</div>
+        <div class="stat-label">Registered nurse shortfall by 2025</div>
+        <div class="stat-desc">U.S. nursing shortages projected to reach critical levels</div>
+        <div class="stat-source">Source: Mercer</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">200K&ndash;450K</div>
+        <div class="stat-label">RNs unavailable for direct patient care</div>
+        <div class="stat-desc">Driven largely by burnout and attrition</div>
+        <div class="stat-source">Source: Oracle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Drivers -->
+<section class="drivers" id="drivers">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Root Causes</div>
+      <h2 class="section-title">What is driving these shortages?</h2>
+      <p class="section-subtitle">Burnout, bad management, and limited education capacity will continue to drive these shortages</p>
+    </div>
+    <div class="drivers-grid fade-up d1">
+      <div class="driver-card burnout">
+        <span class="driver-tag">High Impact</span>
+        <h3>Burnout</h3>
+        <ul>
+          <li>Excessive workload and staffing shortages</li>
+          <li>Long and irregular hours</li>
+        </ul>
+        <div class="driver-sources">Sources: Adonis, CDC</div>
+      </div>
+      <div class="driver-card management">
+        <span class="driver-tag">Systemic</span>
+        <h3>Management Pressure</h3>
+        <ul>
+          <li>Micromanagement</li>
+          <li>Focus on metrics over patient care</li>
+        </ul>
+        <div class="driver-sources">Source: The Lancet</div>
+      </div>
+      <div class="driver-card education">
+        <span class="driver-tag">Structural</span>
+        <h3>Limited Educational Capacity</h3>
+        <ul>
+          <li>Not enough training programs to meet demand</li>
+          <li>Roles stay open longer, turnover remains high, and time-to-hire is rising</li>
+        </ul>
+        <div class="driver-sources">Sources: Prolinkworks, trnstaffing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Traditional -->
+<section class="traditional" id="traditional">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Status Quo</div>
+      <h2 class="section-title">Traditional reimbursement programs just don't cut it.</h2>
+      <p class="section-subtitle">Traditional reimbursement programs put too much of the legwork on an already distressed population</p>
+    </div>
+    <div class="pressure-grid fade-up d1">
+      <div class="pressure-card">
+        <span class="pressure-label">Financial</span>
+        <h3>Can't afford the upfront costs</h3>
+        <p>Workers cannot afford the upfront cost of tuition, creating an immediate barrier to education and advancement.</p>
+      </div>
+      <div class="pressure-card">
+        <span class="pressure-label">Time</span>
+        <h3>No bandwidth to research options</h3>
+        <p>Overworked healthcare workers don't have the time to research and find the right programs for them.</p>
+      </div>
+      <div class="pressure-card">
+        <span class="pressure-label">Knowledge</span>
+        <h3>Unclear career direction</h3>
+        <p>Workers don't know which direction to take to future-proof their careers in a rapidly evolving field.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vision -->
+<section class="vision" id="vision">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">The Opportunity</div>
+      <h2 class="section-title">What if there was another way?</h2>
+      <p class="section-subtitle">Create a world where you attract, retain, and develop the best healthcare talent</p>
+    </div>
+    <div class="vision-grid fade-up d1">
+      <div class="vision-card">
+        <h3>Attract &amp; Retain</h3>
+        <p>Become the employer of choice for top healthcare talent</p>
+      </div>
+      <div class="vision-card">
+        <h3>Build Pipeline</h3>
+        <p>Create a steady talent pipeline to mitigate shortages and burnout</p>
+      </div>
+      <div class="vision-card">
+        <h3>Future-Proof</h3>
+        <p>Give your workforce the tools to confront new realities and succeed with new responsibilities</p>
+      </div>
+      <div class="vision-card">
+        <h3>Enable Mobility</h3>
+        <p>Give healthcare workers mobility options to stay within your ecosystem</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Solution -->
+<section class="solution" id="solution">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">The Solution</div>
+      <h2 class="section-title">Get there with Guild Grow.</h2>
+      <p class="section-subtitle">Your partner in each step of the talent pipeline to address labor and skills shortages systematically</p>
+    </div>
+    <div class="pillar-row fade-up d1">
+      <div class="pillar-card">
+        <div class="pillar-step">01</div>
+        <span class="pillar-tag">Attract Talent</span>
+        <h3>Become the destination of choice</h3>
+        <p>Attract up-and-coming healthcare talent by offering &ldquo;Education as a Benefit&rdquo; &mdash; removing financial barriers and making your organization the clear first choice.</p>
+      </div>
+      <div class="pillar-row-image">
+        <img src="guild person image 3.webp" alt="Healthcare workers collaborating">
+      </div>
+    </div>
+
+    <div class="pillar-row reverse fade-up d2">
+      <div class="pillar-card">
+        <div class="pillar-step">02</div>
+        <span class="pillar-tag">Retain Talent</span>
+        <h3>Build loyalty through growth</h3>
+        <p>Create employee engagement, affinity, and loyalty by offering world-class programs and wraparound learner experiences including 1:1 coaching.</p>
+      </div>
+      <div class="pillar-row-image">
+        <img src="guild person image 4.webp" alt="Healthcare professional in lab">
+      </div>
+    </div>
+
+    <div class="pillar-row fade-up d3">
+      <div class="pillar-card">
+        <div class="pillar-step">03</div>
+        <span class="pillar-tag">Develop Talent</span>
+        <h3>Prepare for what's next</h3>
+        <p>Equip your talent for the future with curated programs and career pathways aligned to emerging healthcare demands.</p>
+      </div>
+      <div class="pillar-row-image">
+        <img src="guild person image 5.webp" alt="Nurse ready for the future">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Thank You -->
+<section class="thankyou">
+  <div class="thankyou-content fade-up">
+    <h2>Thank you.</h2>
+    <p>I appreciate you taking the time to review this presentation.</p>
+    <p>I'd love to discuss how this framework can drive Guild Grow forward.</p>
+    <div class="thankyou-name">
+      <img src="Ayman Kotob Photo V3.png" alt="Ayman Kotob">
+      Ayman Kotob
+    </div>
+    <div class="thankyou-linkedin">
+      <a href="https://www.linkedin.com/in/aymankotob" target="_blank">linkedin.com/in/aymankotob &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-left"><img src="guild logo.webp" alt="Guild"></div>
+  <div class="footer-right">Guild Grow &middot; Ayman Kotob &middot; Take-Home Assignment</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+
+</body>
+</html>
