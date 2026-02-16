@@ -909,19 +909,28 @@ hr.divider {
   margin-top: 0.25rem;
 }
 
-/* ── Traditional history callout ── */
+/* ── Traditional layout ── */
+.traditional { padding-top: 4rem; padding-bottom: 4rem; }
+.traditional .section-subtitle { margin-bottom: 1.5rem; }
+
+.traditional-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
 .traditional-history {
   background: var(--white);
-  padding: 2rem 2.5rem;
-  margin-bottom: 3rem;
+  padding: 1.5rem 2rem;
   border-left: 3px solid var(--yellow);
 }
 
 .traditional-history p {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: var(--gray-600);
-  line-height: 1.65;
-  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
 }
 
 .traditional-history p:last-child { margin-bottom: 0; }
@@ -931,13 +940,23 @@ hr.divider {
   font-weight: 600;
 }
 
-.traditional-transition {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
-  color: var(--black);
-  line-height: 1.6;
-  max-width: 800px;
-  margin-bottom: 3rem;
+.traditional-right .pressure-grid {
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 2px solid var(--black);
+}
+
+.traditional-right .pressure-card {
+  padding: 1.75rem 1.5rem;
+}
+
+.traditional-right .pressure-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.traditional-right .pressure-card p {
+  font-size: 0.85rem;
+  line-height: 1.55;
 }
 
 /* ── Traditional / Pressures ── */
@@ -1294,6 +1313,67 @@ footer .footer-right {
 .fade-up.d3 { transition-delay: 0.24s; }
 .fade-up.d4 { transition-delay: 0.32s; }
 
+/* ── Present button ── */
+.present-btn {
+  padding: 0.45rem 1.25rem;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.present-btn:hover { background: var(--gray-800); }
+
+html.present-mode .present-btn {
+  background: transparent;
+  color: var(--black);
+  border: 1.5px solid rgba(0,0,0,0.2);
+}
+
+html.present-mode .present-btn:hover {
+  border-color: var(--black);
+}
+
+/* ── Present mode ── */
+html.present-mode {
+  scroll-behavior: auto;
+}
+
+html.present-mode body {
+  overflow-x: hidden;
+}
+
+html.present-mode nav {
+  border-bottom-color: transparent;
+  box-shadow: none !important;
+}
+
+html.present-mode section,
+html.present-mode .section-divider {
+  min-height: 100vh;
+}
+
+html.present-mode .section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html.present-mode .thankyou {
+  min-height: 100vh;
+}
+
+
+html.present-mode .fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1305,6 +1385,7 @@ footer .footer-right {
 @media (max-width: 768px) {
   nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
+  .present-btn { display: none; }
   section { padding: 4rem 1.5rem; }
   .hero { padding: 5rem 1.5rem 3rem; }
   .hero-image { width: 100%; height: 50%; top: auto; bottom: 0; }
@@ -1322,6 +1403,8 @@ footer .footer-right {
     grid-template-columns: 1fr;
   }
   .toc-grid { grid-template-columns: 1fr; }
+  .traditional-layout { grid-template-columns: 1fr; }
+  .traditional-right .pressure-grid { grid-template-columns: 1fr; }
   .summary-pillars { grid-template-columns: 1fr; }
   .summary-pillar { border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.08); }
   .stat-card,
@@ -1358,6 +1441,7 @@ footer .footer-right {
     <li><a href="#vision">Vision</a></li>
     <li><a href="#solution">Solution</a></li>
   </ul>
+  <button class="present-btn" id="presentBtn" onclick="togglePresent()">Present</button>
 </nav>
 
 <!-- Hero -->
@@ -1757,40 +1841,43 @@ footer .footer-right {
       <h2 class="section-title">Tuition reimbursement was a start &mdash; but it&rsquo;s not enough.</h2>
       <p class="section-subtitle">Employer-sponsored education has been around for decades, yet traditional programs put too much of the legwork on an already distressed workforce</p>
     </div>
-    <div class="traditional-history fade-up">
-      <p><strong>A brief history:</strong> Employer tuition assistance became widespread after Congress created IRC Section 127 in 1978, allowing companies to offer up to $5,250 per employee per year in tax-free educational assistance. The provision was made permanent in 2012. Today, 61% of employers with 50+ workers offer some form of tuition reimbursement.</p>
-      <p>But "reimbursement" is the key word &mdash; most programs require workers to <strong>pay upfront and get paid back later</strong>, creating barriers for the very people who need the most support.</p>
-    </div>
-    <p class="traditional-transition fade-up">For healthcare workers already stretched thin, these programs fall short in three critical ways:</p>
-    <div class="pressure-grid fade-up d1">
-      <div class="pressure-card">
-        <span class="pressure-label">Financial</span>
-        <h3>Can't afford the upfront costs</h3>
-        <p>Workers cannot afford the upfront cost of tuition, creating an immediate barrier to education and advancement.</p>
-        <div class="pressure-stat">
-          <span class="pressure-stat-number">2&ndash;10%</span>
-          <span class="pressure-stat-label">of eligible employees actually use tuition reimbursement &mdash; largely because programs require paying upfront</span>
-          <span class="pressure-stat-source">Source: Shortlister</span>
-        </div>
+    <div class="traditional-layout fade-up d1">
+      <div class="traditional-history">
+        <p><strong>A brief history:</strong> Employer tuition assistance became widespread after Congress created IRC Section 127 in 1978, allowing companies to offer up to $5,250/year in tax-free educational assistance. Made permanent in 2012, 61% of employers with 50+ workers now offer it.</p>
+        <p>But &ldquo;reimbursement&rdquo; is the key word &mdash; most programs require workers to <strong>pay upfront and get paid back later</strong>, creating barriers for the very people who need the most support.</p>
       </div>
-      <div class="pressure-card">
-        <span class="pressure-label">Time</span>
-        <h3>No bandwidth to research options</h3>
-        <p>Overworked healthcare workers don't have the time to research and find the right programs for them.</p>
-        <div class="pressure-stat">
-          <span class="pressure-stat-number">60%</span>
-          <span class="pressure-stat-label">of employees don&rsquo;t even know their employer offers tuition assistance</span>
-          <span class="pressure-stat-source">Source: Bright Horizons</span>
-        </div>
-      </div>
-      <div class="pressure-card">
-        <span class="pressure-label">Knowledge</span>
-        <h3>Unclear career direction</h3>
-        <p>Workers don't know which direction to take to future-proof their careers in a rapidly evolving field.</p>
-        <div class="pressure-stat">
-          <span class="pressure-stat-number">25%</span>
-          <span class="pressure-stat-label">of interested employees ever start an application for tuition benefits</span>
-          <span class="pressure-stat-source">Source: Bright Horizons</span>
+      <div class="traditional-right">
+        <div class="pressure-grid">
+          <div class="pressure-card">
+            <span class="pressure-label">Financial</span>
+            <h3>Can't afford the upfront costs</h3>
+            <p>Workers cannot afford the upfront cost of tuition, creating an immediate barrier to education and advancement.</p>
+            <div class="pressure-stat">
+              <span class="pressure-stat-number">2&ndash;10%</span>
+              <span class="pressure-stat-label">of eligible employees actually use tuition reimbursement</span>
+              <span class="pressure-stat-source">Source: Shortlister</span>
+            </div>
+          </div>
+          <div class="pressure-card">
+            <span class="pressure-label">Time</span>
+            <h3>No bandwidth to research options</h3>
+            <p>Overworked healthcare workers lack the time to find the right programs.</p>
+            <div class="pressure-stat">
+              <span class="pressure-stat-number">60%</span>
+              <span class="pressure-stat-label">of employees don&rsquo;t even know their employer offers tuition assistance</span>
+              <span class="pressure-stat-source">Source: Bright Horizons</span>
+            </div>
+          </div>
+          <div class="pressure-card">
+            <span class="pressure-label">Knowledge</span>
+            <h3>Unclear career direction</h3>
+            <p>Workers don&rsquo;t know which direction to take to future-proof their careers.</p>
+            <div class="pressure-stat">
+              <span class="pressure-stat-number">25%</span>
+              <span class="pressure-stat-label">of interested employees ever start an application</span>
+              <span class="pressure-stat-source">Source: Bright Horizons</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1846,6 +1933,7 @@ footer .footer-right {
       </div>
     </div>
 
+    <div class="slide-break"></div>
     <div class="pillar-row reverse fade-up d2">
       <div class="pillar-card">
         <div class="pillar-step">02</div>
@@ -1907,6 +1995,68 @@ const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 });
+
+function togglePresent(forceOff) {
+  const html = document.documentElement;
+  const btn = document.getElementById('presentBtn');
+  const entering = forceOff ? false : !html.classList.contains('present-mode');
+  const idx = entering ? getCurrentSlideIndex() : null;
+  html.classList.toggle('present-mode', entering);
+  btn.textContent = entering ? 'Exit' : 'Present';
+  if (entering) {
+    requestAnimationFrame(() => {
+      getSnapTargets()[idx].scrollIntoView({ behavior: 'instant' });
+    });
+  }
+}
+
+function getSnapTargets() {
+  return Array.from(document.querySelectorAll('section, .section-divider, .slide-break, footer'));
+}
+
+function getCurrentSlideIndex() {
+  const targets = getSnapTargets();
+  let best = 0;
+  let bestDist = Infinity;
+  for (let i = 0; i < targets.length; i++) {
+    const dist = Math.abs(targets[i].getBoundingClientRect().top);
+    if (dist < bestDist) { bestDist = dist; best = i; }
+  }
+  return best;
+}
+
+function goToSlide(direction) {
+  const targets = getSnapTargets();
+  const idx = getCurrentSlideIndex() + direction;
+  const clamped = Math.max(0, Math.min(idx, targets.length - 1));
+  targets[clamped].scrollIntoView({ behavior: 'smooth' });
+}
+
+document.addEventListener('keydown', e => {
+  const inPresent = document.documentElement.classList.contains('present-mode');
+  if (e.key === 'Escape' && inPresent) {
+    togglePresent(true);
+    return;
+  }
+  if (!inPresent) return;
+
+  const next = ['ArrowDown', 'ArrowRight', 'PageDown', ' '].includes(e.key);
+  const prev = ['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key);
+  if (next || prev) {
+    e.preventDefault();
+    goToSlide(next ? 1 : -1);
+  }
+});
+
+let wheelLocked = false;
+document.addEventListener('wheel', e => {
+  if (!document.documentElement.classList.contains('present-mode')) return;
+  e.preventDefault();
+  if (wheelLocked) return;
+  wheelLocked = true;
+  goToSlide(e.deltaY > 0 ? 1 : -1);
+  setTimeout(() => { wheelLocked = false; }, 700);
+}, { passive: false });
 
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
