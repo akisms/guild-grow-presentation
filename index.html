@@ -829,6 +829,117 @@ hr.divider {
   letter-spacing: 0.06em;
 }
 
+/* ── Consequences ── */
+.consequences { background: var(--black); color: var(--white); }
+.consequences .section-label { color: var(--gray-400); }
+.consequences .section-title { color: var(--white); }
+.consequences .section-subtitle { color: rgba(255,255,255,0.5); }
+
+.consequences-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.consequence-card {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+
+.consequence-card:last-child { border-right: none; }
+
+.consequence-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  right: 2rem;
+  height: 3px;
+}
+
+.consequence-card:nth-child(1)::before { background: var(--yellow); }
+.consequence-card:nth-child(2)::before { background: var(--orange); }
+.consequence-card:nth-child(3)::before { background: var(--white); }
+
+.consequence-card h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.consequence-card p {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.consequence-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.consequence-stat-number {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.2rem;
+  color: var(--yellow);
+  line-height: 1;
+}
+
+.consequence-stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.4;
+}
+
+.consequence-stat-source {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.25rem;
+}
+
+/* ── Traditional history callout ── */
+.traditional-history {
+  background: var(--white);
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+  border-left: 3px solid var(--yellow);
+}
+
+.traditional-history p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+
+.traditional-history p:last-child { margin-bottom: 0; }
+
+.traditional-history strong {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.traditional-transition {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  color: var(--black);
+  line-height: 1.6;
+  max-width: 800px;
+  margin-bottom: 3rem;
+}
+
 /* ── Traditional / Pressures ── */
 .traditional { background: var(--cream); }
 
@@ -871,6 +982,37 @@ hr.divider {
   font-size: 0.92rem;
   color: var(--gray-600);
   line-height: 1.65;
+}
+
+.pressure-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.pressure-stat-number {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.2rem;
+  color: var(--red-muted);
+  line-height: 1;
+}
+
+.pressure-stat-label {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  line-height: 1.4;
+}
+
+.pressure-stat-source {
+  font-size: 0.65rem;
+  color: var(--gray-200);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.25rem;
 }
 
 /* ── Vision ── */
@@ -1173,6 +1315,7 @@ footer .footer-right {
   .pillar-row-image { min-height: 240px; }
   .stats-grid,
   .drivers-grid,
+  .consequences-grid,
   .pressure-grid,
   .vision-grid,
   .disclosure-grid {
@@ -1183,12 +1326,14 @@ footer .footer-right {
   .summary-pillar { border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.08); }
   .stat-card,
   .driver-card,
+  .consequence-card,
   .pressure-card,
   .vision-card {
     border-right: none !important;
     border-bottom: 1px solid rgba(0,0,0,0.08);
   }
-  .vision-card { border-bottom-color: rgba(255,255,255,0.08) !important; }
+  .vision-card,
+  .consequence-card { border-bottom-color: rgba(255,255,255,0.08) !important; }
   .positioning-box { padding: 2.5rem 2rem; }
   footer { flex-direction: column; gap: 0.75rem; text-align: center; }
   .arch-table { font-size: 0.75rem; display: block; overflow-x: auto; }
@@ -1208,6 +1353,7 @@ footer .footer-right {
     <li><span class="nav-group-label external">External</span></li>
     <li><a href="#problem">Problem</a></li>
     <li><a href="#drivers">Drivers</a></li>
+    <li><a href="#consequences">Consequences</a></li>
     <li><a href="#traditional">Status Quo</a></li>
     <li><a href="#vision">Vision</a></li>
     <li><a href="#solution">Solution</a></li>
@@ -1278,14 +1424,18 @@ footer .footer-right {
           </li>
           <li class="toc-item">
             <span class="toc-item-number">6</span>
-            <a href="#traditional">Traditional Programs Don&rsquo;t Cut It</a>
+            <a href="#consequences">The Toll on Healthcare Systems</a>
           </li>
           <li class="toc-item">
             <span class="toc-item-number">7</span>
-            <a href="#vision">What If There Was Another Way?</a>
+            <a href="#traditional">Traditional Programs Don&rsquo;t Cut It</a>
           </li>
           <li class="toc-item">
             <span class="toc-item-number">8</span>
+            <a href="#vision">What If There Was Another Way?</a>
+          </li>
+          <li class="toc-item">
+            <span class="toc-item-number">9</span>
             <a href="#solution">Get There with Guild Grow</a>
           </li>
         </ul>
@@ -1559,29 +1709,89 @@ footer .footer-right {
   </div>
 </section>
 
+<!-- Consequences -->
+<section class="consequences" id="consequences">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">The Toll</div>
+      <h2 class="section-title">These shortages are costing healthcare systems dearly.</h2>
+      <p class="section-subtitle">The talent crisis is making it harder and more expensive to attract, retain, and develop healthcare workers</p>
+    </div>
+    <div class="consequences-grid fade-up d1">
+      <div class="consequence-card">
+        <h3>Hard to attract talent</h3>
+        <p>Healthcare systems must compete with higher wages, sign-on bonuses, and costly incentives just to fill open roles &mdash; while time-to-hire keeps climbing.</p>
+        <div class="consequence-stat">
+          <span class="consequence-stat-number">83 days</span>
+          <span class="consequence-stat-label">Average time to recruit an experienced RN</span>
+          <span class="consequence-stat-source">Source: NSI Staffing Report</span>
+        </div>
+      </div>
+      <div class="consequence-card">
+        <h3>Hard to retain talent</h3>
+        <p>Remaining staff absorb heavier workloads, accelerating burnout and triggering a vicious cycle of attrition that drains budgets.</p>
+        <div class="consequence-stat">
+          <span class="consequence-stat-number">$61K</span>
+          <span class="consequence-stat-label">Average cost to replace a single staff RN</span>
+          <span class="consequence-stat-source">Source: NSI Staffing Report</span>
+        </div>
+      </div>
+      <div class="consequence-card">
+        <h3>Hard to develop skills</h3>
+        <p>With limited training capacity and overwhelmed staff, healthcare systems can&rsquo;t upskill their workforce fast enough to meet evolving care demands.</p>
+        <div class="consequence-stat">
+          <span class="consequence-stat-number">~50%</span>
+          <span class="consequence-stat-label">Share of hospital expenses consumed by labor costs</span>
+          <span class="consequence-stat-source">Source: Deloitte</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Traditional -->
 <section class="traditional" id="traditional">
   <div class="container">
     <div class="fade-up">
       <div class="section-label">Status Quo</div>
-      <h2 class="section-title">Traditional reimbursement programs just don't cut it.</h2>
-      <p class="section-subtitle">Traditional reimbursement programs put too much of the legwork on an already distressed population</p>
+      <h2 class="section-title">Tuition reimbursement was a start &mdash; but it&rsquo;s not enough.</h2>
+      <p class="section-subtitle">Employer-sponsored education has been around for decades, yet traditional programs put too much of the legwork on an already distressed workforce</p>
     </div>
+    <div class="traditional-history fade-up">
+      <p><strong>A brief history:</strong> Employer tuition assistance became widespread after Congress created IRC Section 127 in 1978, allowing companies to offer up to $5,250 per employee per year in tax-free educational assistance. The provision was made permanent in 2012. Today, 61% of employers with 50+ workers offer some form of tuition reimbursement.</p>
+      <p>But "reimbursement" is the key word &mdash; most programs require workers to <strong>pay upfront and get paid back later</strong>, creating barriers for the very people who need the most support.</p>
+    </div>
+    <p class="traditional-transition fade-up">For healthcare workers already stretched thin, these programs fall short in three critical ways:</p>
     <div class="pressure-grid fade-up d1">
       <div class="pressure-card">
         <span class="pressure-label">Financial</span>
         <h3>Can't afford the upfront costs</h3>
         <p>Workers cannot afford the upfront cost of tuition, creating an immediate barrier to education and advancement.</p>
+        <div class="pressure-stat">
+          <span class="pressure-stat-number">2&ndash;10%</span>
+          <span class="pressure-stat-label">of eligible employees actually use tuition reimbursement &mdash; largely because programs require paying upfront</span>
+          <span class="pressure-stat-source">Source: Shortlister</span>
+        </div>
       </div>
       <div class="pressure-card">
         <span class="pressure-label">Time</span>
         <h3>No bandwidth to research options</h3>
         <p>Overworked healthcare workers don't have the time to research and find the right programs for them.</p>
+        <div class="pressure-stat">
+          <span class="pressure-stat-number">60%</span>
+          <span class="pressure-stat-label">of employees don&rsquo;t even know their employer offers tuition assistance</span>
+          <span class="pressure-stat-source">Source: Bright Horizons</span>
+        </div>
       </div>
       <div class="pressure-card">
         <span class="pressure-label">Knowledge</span>
         <h3>Unclear career direction</h3>
         <p>Workers don't know which direction to take to future-proof their careers in a rapidly evolving field.</p>
+        <div class="pressure-stat">
+          <span class="pressure-stat-number">25%</span>
+          <span class="pressure-stat-label">of interested employees ever start an application for tuition benefits</span>
+          <span class="pressure-stat-source">Source: Bright Horizons</span>
+        </div>
       </div>
     </div>
   </div>
