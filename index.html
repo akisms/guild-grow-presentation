@@ -910,15 +910,8 @@ hr.divider {
 }
 
 /* ── Traditional layout ── */
-.traditional { padding-top: 4rem; padding-bottom: 4rem; }
-.traditional .section-subtitle { margin-bottom: 1.5rem; }
-
-.traditional-layout {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 2.5rem;
-  align-items: start;
-}
+.traditional { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+.traditional .section-subtitle { margin-bottom: 1rem; }
 
 .traditional-history {
   background: var(--white);
@@ -927,36 +920,14 @@ hr.divider {
 }
 
 .traditional-history p {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   color: var(--gray-600);
   line-height: 1.6;
-  margin-bottom: 0.6rem;
 }
-
-.traditional-history p:last-child { margin-bottom: 0; }
 
 .traditional-history strong {
   color: var(--black);
   font-weight: 600;
-}
-
-.traditional-right .pressure-grid {
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 2px solid var(--black);
-}
-
-.traditional-right .pressure-card {
-  padding: 1.75rem 1.5rem;
-}
-
-.traditional-right .pressure-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.75rem;
-}
-
-.traditional-right .pressure-card p {
-  font-size: 0.85rem;
-  line-height: 1.55;
 }
 
 /* ── Traditional / Pressures ── */
@@ -1403,8 +1374,6 @@ html.present-mode .fade-up {
     grid-template-columns: 1fr;
   }
   .toc-grid { grid-template-columns: 1fr; }
-  .traditional-layout { grid-template-columns: 1fr; }
-  .traditional-right .pressure-grid { grid-template-columns: 1fr; }
   .summary-pillars { grid-template-columns: 1fr; }
   .summary-pillar { border-right: none !important; border-bottom: 1px solid rgba(0,0,0,0.08); }
   .stat-card,
@@ -1841,14 +1810,11 @@ html.present-mode .fade-up {
       <h2 class="section-title">Tuition reimbursement was a start &mdash; but it&rsquo;s not enough.</h2>
       <p class="section-subtitle">Employer-sponsored education has been around for decades, yet traditional programs put too much of the legwork on an already distressed workforce</p>
     </div>
-    <div class="traditional-layout fade-up d1">
-      <div class="traditional-history">
-        <p><strong>A brief history:</strong> Employer tuition assistance became widespread after Congress created IRC Section 127 in 1978, allowing companies to offer up to $5,250/year in tax-free educational assistance. Made permanent in 2012, 61% of employers with 50+ workers now offer it.</p>
-        <p>But &ldquo;reimbursement&rdquo; is the key word &mdash; most programs require workers to <strong>pay upfront and get paid back later</strong>, creating barriers for the very people who need the most support.</p>
-      </div>
-      <div class="slide-break"></div>
-      <div class="traditional-right">
-        <div class="pressure-grid">
+    <div class="traditional-history fade-up d1" style="margin-bottom:1.5rem;">
+      <p>Since 1978, employers have offered up to $5,250/year in tax-free tuition assistance. But most programs require workers to <strong>pay upfront and get paid back later</strong> &mdash; creating barriers for those who need support most.</p>
+    </div>
+    <div class="fade-up d2">
+      <div class="pressure-grid">
           <div class="pressure-card">
             <span class="pressure-label">Financial</span>
             <h3>Can't afford the upfront costs</h3>
@@ -1879,7 +1845,6 @@ html.present-mode .fade-up {
               <span class="pressure-stat-source">Source: Bright Horizons</span>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
