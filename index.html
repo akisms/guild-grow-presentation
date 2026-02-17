@@ -1997,14 +1997,20 @@ function getCurrentSlideIndex() {
   return best;
 }
 
-function updateNavHighlight() {
-  const scrollY = window.scrollY;
-  let current = '';
-  document.querySelectorAll('section[id]').forEach(s => {
-    if (scrollY >= s.offsetTop - 120) current = s.id;
-  });
+function updateNavHighlight(target) {
+  const section = target.closest('section[id]') || target.querySelector('section[id]');
+  const id = section ? section.id : null;
+  if (!id && target.classList.contains('section-divider')) {
+    const next = target.nextElementSibling;
+    if (next && next.id) {
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + next.id);
+      });
+      return;
+    }
+  }
   document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    a.classList.toggle('active', id ? a.getAttribute('href') === '#' + id : false);
   });
 }
 
@@ -2013,7 +2019,7 @@ function goToSlide(direction) {
   const idx = getCurrentSlideIndex() + direction;
   const clamped = Math.max(0, Math.min(idx, targets.length - 1));
   targets[clamped].scrollIntoView({ behavior: 'smooth' });
-  setTimeout(updateNavHighlight, 350);
+  updateNavHighlight(targets[clamped]);
 }
 
 document.addEventListener('keydown', e => {
