@@ -1976,9 +1976,11 @@ function togglePresent(forceOff) {
   html.classList.toggle('present-mode', entering);
   btn.textContent = entering ? 'Exit' : 'Present';
   if (entering) {
+    const target = getSnapTargets()[idx];
     requestAnimationFrame(() => {
-      getSnapTargets()[idx].scrollIntoView({ behavior: 'instant' });
+      target.scrollIntoView({ behavior: 'instant' });
     });
+    updateNavHighlight(target);
   }
 }
 
@@ -2051,6 +2053,7 @@ document.addEventListener('wheel', e => {
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
+  if (document.documentElement.classList.contains('present-mode')) return;
   let current = '';
   sections.forEach(s => {
     if (window.scrollY >= s.offsetTop - 100) current = s.id;
