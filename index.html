@@ -1310,6 +1310,12 @@ html.present-mode .present-btn:hover {
   border-color: var(--black);
 }
 
+html.present-mode .nav-links a.active {
+  color: var(--black);
+  border-bottom: 2px solid var(--yellow);
+  padding-bottom: 2px;
+}
+
 /* ── Present mode ── */
 html.present-mode {
   scroll-behavior: auto;
@@ -1991,11 +1997,23 @@ function getCurrentSlideIndex() {
   return best;
 }
 
+function updateNavHighlight() {
+  const scrollY = window.scrollY;
+  let current = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+
 function goToSlide(direction) {
   const targets = getSnapTargets();
   const idx = getCurrentSlideIndex() + direction;
   const clamped = Math.max(0, Math.min(idx, targets.length - 1));
   targets[clamped].scrollIntoView({ behavior: 'smooth' });
+  setTimeout(updateNavHighlight, 350);
 }
 
 document.addEventListener('keydown', e => {
