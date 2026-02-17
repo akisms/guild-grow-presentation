@@ -1310,10 +1310,17 @@ html.present-mode .present-btn:hover {
   border-color: var(--black);
 }
 
+html.present-mode .nav-links a {
+  opacity: 0.4;
+  transition: opacity 0.2s, color 0.2s;
+}
+
 html.present-mode .nav-links a.active {
+  opacity: 1;
   color: var(--black);
-  border-bottom: 2px solid var(--yellow);
-  padding-bottom: 2px;
+  background: var(--yellow);
+  padding: 0.25rem 0.65rem;
+  border-radius: 100px;
 }
 
 /* ── Present mode ── */
