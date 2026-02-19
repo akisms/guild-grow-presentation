@@ -719,6 +719,12 @@ hr.divider {
   padding: 2.5rem 1.5rem 2rem;
   border-right: 1px solid rgba(0,0,0,0.1);
   transition: background 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  flex: 1;
 }
 
 .stat-card:last-child { border-right: none; }
@@ -1590,7 +1596,7 @@ html.present-mode .fade-up {
       <div class="section-label">Framework</div>
       <h2 class="section-title">Messaging Architecture</h2>
       <div class="arch-rationale">
-        <p class="arch-rationale-intro">This framework comes courtesy of <a href="https://www.fletchpmm.com" target="_blank">FletchPMM</a>. I chose it because:</p>
+        <p class="arch-rationale-intro">This framework comes courtesy of <a href="https://www.fletchpmm.com" target="_blank">FletchPMM</a>. I chose it because it:</p>
         <ul>
           <li>Leverages different "anchors" to develop a holistic understanding of how the product fits in</li>
           <li>Uses a "ladder" structure that creates a clear throughline between the problems, capabilities, features, and benefits</li>
@@ -1718,7 +1724,7 @@ html.present-mode .fade-up {
       <div class="section-text">
         <div class="section-label">The Challenge</div>
         <h2 class="section-title">Labor and skill shortages are coming.</h2>
-        <p class="section-subtitle">The U.S. healthcare system faces a workforce crisis of staggering proportions</p>
+        <p class="section-subtitle">The U.S. healthcare system faces a workforce crisis of immense proportions</p>
       </div>
       <div class="section-image">
         <img src="guild person image 2.webp" alt="Healthcare worker">
@@ -1726,22 +1732,22 @@ html.present-mode .fade-up {
     </div>
     <div class="stats-grid fade-up d1">
       <div class="stat-card">
-        <div class="stat-number">3.2M</div>
-        <div class="stat-label">Direct care worker shortfall by 2026</div>
-        <div class="stat-desc">Home health aides, medical assistants, nursing assistants</div>
-        <div class="stat-source">Source: Mercer</div>
+        <div class="stat-number">40%</div>
+        <div class="stat-label">of nurses intend to leave the workforce by 2029</div>
+        <div class="stat-desc">Driven primarily by stress, burnout, and understaffing</div>
+        <div class="stat-source">Source: NCSBN 2024 Workforce Survey</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">102M</div>
         <div class="stat-label">People in Health Professional Shortage Areas</div>
         <div class="stat-desc">Communities without enough healthcare providers for local populations</div>
-        <div class="stat-source">Source: Medcerts</div>
+        <div class="stat-source">Source: HRSA</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">500K</div>
-        <div class="stat-label">Registered nurse shortfall by 2025</div>
+        <div class="stat-number">500K+</div>
+        <div class="stat-label">Registered nurse shortfall by 2030</div>
         <div class="stat-desc">U.S. nursing shortages projected to reach critical levels</div>
-        <div class="stat-source">Source: Mercer</div>
+        <div class="stat-source">Source: HRSA</div>
       </div>
     </div>
   </div>
