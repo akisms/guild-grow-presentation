@@ -710,7 +710,7 @@ hr.divider {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
   border-top: 2px solid var(--black);
 }
@@ -1360,10 +1360,45 @@ html.present-mode .fade-up {
   transform: none !important;
 }
 
+/* ── Inline editing ── */
+[contenteditable="true"] {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+  background: rgba(237,216,94,0.08);
+  border-radius: 2px;
+  cursor: text;
+}
+
+[contenteditable="true"]:focus {
+  outline-color: var(--orange);
+  background: rgba(212,97,44,0.06);
+}
+
+.reset-edits-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+  padding: 0.5rem 1.25rem;
+  background: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  display: none;
+}
+
+.reset-edits-btn:hover { opacity: 0.85; }
+
+.reset-edits-btn.visible { display: block; }
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .stats-grid .stat-card:nth-child(2) { border-right: none; }
   .vision-grid { grid-template-columns: repeat(2, 1fr); }
   .vision-grid .vision-card:nth-child(2) { border-right: none; }
 }
@@ -1730,12 +1765,6 @@ html.present-mode .fade-up {
         <div class="stat-desc">U.S. nursing shortages projected to reach critical levels</div>
         <div class="stat-source">Source: Mercer</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-number">200K&ndash;450K</div>
-        <div class="stat-label">RNs unavailable for direct patient care</div>
-        <div class="stat-desc">Driven largely by burnout and attrition</div>
-        <div class="stat-source">Source: Oracle</div>
-      </div>
     </div>
   </div>
 </section>
@@ -1963,6 +1992,8 @@ html.present-mode .fade-up {
   <div class="footer-right">Guild Grow &middot; Ayman Kotob &middot; Take-Home Assignment</div>
 </footer>
 
+<button class="reset-edits-btn" id="resetEditsBtn" onclick="resetEdits()">Reset All Edits</button>
+
 <script>
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -2058,6 +2089,95 @@ document.addEventListener('wheel', e => {
   goToSlide(e.deltaY > 0 ? 1 : -1);
   setTimeout(() => { wheelLocked = false; }, 700);
 }, { passive: false });
+
+/* ── Inline editing ── */
+const EDITABLE = 'h1,h2,h3,h4,p,li,span.stat-number,span.stat-label,span.stat-desc,span.stat-source,div.stat-number,div.stat-label,div.stat-desc,div.stat-source,span.section-label,div.section-label,span.pillar-tag,div.pillar-step,span.pressure-label,span.consequence-stat-number,span.consequence-stat-label,span.consequence-stat-source,span.pressure-stat-number,span.pressure-stat-label,span.pressure-stat-source,div.hero-badge,div.driver-sources,span.toc-section-title,span.toc-item-number,div.footer-right';
+const STORAGE_KEY = 'guild-grow-edits';
+
+function getEditPath(el) {
+  const parts = [];
+  let node = el;
+  while (node && node !== document.body) {
+    const parent = node.parentElement;
+    if (parent) {
+      const siblings = Array.from(parent.children);
+      const idx = siblings.indexOf(node);
+      const tag = node.tagName.toLowerCase();
+      parts.unshift(tag + '[' + idx + ']');
+    }
+    node = parent;
+  }
+  return parts.join('/');
+}
+
+function loadEdits() {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  const resetBtn = document.getElementById('resetEditsBtn');
+  if (Object.keys(saved).length > 0) {
+    resetBtn.classList.add('visible');
+  }
+  for (const [path, text] of Object.entries(saved)) {
+    const el = resolveEditPath(path);
+    if (el) el.innerHTML = text;
+  }
+}
+
+function resolveEditPath(path) {
+  let node = document.body;
+  for (const part of path.split('/')) {
+    const match = part.match(/^(.+)\[(\d+)\]$/);
+    if (!match || !node) return null;
+    const children = Array.from(node.children);
+    node = children[parseInt(match[2])];
+  }
+  return node;
+}
+
+function saveEdit(el) {
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  const path = getEditPath(el);
+  saved[path] = el.innerHTML;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  document.getElementById('resetEditsBtn').classList.add('visible');
+}
+
+function resetEdits() {
+  if (!confirm('Reset all edits to original content?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+document.addEventListener('dblclick', e => {
+  const el = e.target.closest(EDITABLE);
+  if (!el || el.contentEditable === 'true') return;
+  // Don't edit links in nav
+  if (el.closest('nav')) return;
+  el.contentEditable = 'true';
+  el.focus();
+  // Select all text for easy replacement
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+});
+
+document.addEventListener('focusout', e => {
+  if (e.target.contentEditable === 'true') {
+    e.target.contentEditable = 'false';
+    saveEdit(e.target);
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.target.contentEditable === 'true' && e.key === 'Escape') {
+    e.target.contentEditable = 'false';
+    e.target.blur();
+    e.stopPropagation();
+  }
+});
+
+loadEdits();
 
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
